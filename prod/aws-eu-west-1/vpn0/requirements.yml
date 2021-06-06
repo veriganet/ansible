@@ -1,0 +1,2 @@
+- name: wireguard
+  src: git+git@github.com:veriganet/ansible-role-wireguard.git

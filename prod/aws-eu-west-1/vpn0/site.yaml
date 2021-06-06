@@ -1,0 +1,17 @@
+- hosts: vpn0
+  gather_facts: yes
+  vars_files:
+    - ./vault.yaml
+  roles:
+    - role: wireguard
+      vars:
+        setup_type: server
+        server_wireguard_ip: 10.252.0.1
+        server_internal_interface: eth0
+        # Prevent "Unable to start service" error (see FAQ below).
+        reboot_before_starting_service: false
+        alter_security_groups: false
+        peers:
+          # Ferhat's laptop
+          - public_key: "kZWX0UE5BRNtuZxBufrKG9PplSNypS72wzsOG4Nk9nU="
+            allowed_ips: "10.252.0.0/16"
