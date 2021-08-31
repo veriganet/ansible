@@ -1,0 +1,24 @@
+- hosts: kube_control_plane
+  vars_files:
+    - ./vault.yaml
+  roles:
+    - role: automium.haproxy
+      haproxy_user: "{{ vault_haproxy_user }}"
+      haproxy_pass: "{{ vault_haproxy_pass }}"
+      haproxy_conf: |
+        frontend httpfront
+            mode tcp
+            bind *:80
+            default_backend http
+        frontend httpsfront
+            mode tcp
+            bind *:443
+            default_backend https
+        backend http
+            mode tcp
+            balance roundrobin
+            server master {{inventory_hostname}}:32080 check inter 2000 rise 2 fall 5
+        backend https
+            mode tcp
+            balance roundrobin
+            server master {{inventory_hostname}}:32443 check inter 2000 rise 2 fall 5
