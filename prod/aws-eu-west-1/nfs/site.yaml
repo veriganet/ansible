@@ -4,6 +4,6 @@
       nfs_rpcbind_state: started
       nfs_rpcbind_enabled: true
       nfs_exports: [
-          "/nfs/dynamic 172.26.0.0/16(rw,sync,no_root_squash)",
-          "/nfs/manual 172.26.0.0/16(rw,sync,no_root_squash)"
+          "/nfs/dynamic 172.26.0.0/16(rw,sync,no_root_squash,no_subtree_check)",
+          "/nfs/manual 172.26.0.0/16(rw,sync,no_root_squash,no_subtree_check)"
       ]
