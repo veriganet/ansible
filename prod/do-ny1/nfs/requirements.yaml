@@ -1,0 +1,3 @@
+- name: geerlingguy.nfs
+  src: https://github.com/geerlingguy/ansible-role-nfs.git
+  version: 1.5.0
